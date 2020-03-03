@@ -1,29 +1,21 @@
 package pageobjs;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 import common.BasePage;
+import org.openqa.selenium.WebDriver;
 
 public class TwitterUserHomePage extends BasePage {
-	
-	private String dashboardProfileNameLoc = "//div[contains(@class,'DashboardProfileCard-content')]/..//a[contains(@class,'u-textInheritColor')]";
 
-	public TwitterUserHomePage(WebDriver driver) {
-		super(driver);
-	}
+    private String profileButton = "//span[contains(text(),'Profile')]";
+    private String dashboardProfileNameLoc = "//span[contains(text(),'John Doe')]";
 
-	public boolean verifyDashboardProfileName(String fullName) {
+    public TwitterUserHomePage(WebDriver driver) {
+        super(driver);
+    }
 
-		boolean correctNameFound = false;
-		WebElement profileName = findByXPath(dashboardProfileNameLoc);
+    public String getDashboardProfileName() {
 
-		// check that the text of profileName
-		// in fact contains the set full name
-		if (profileName.getText().contains(fullName)) {
-			correctNameFound = true;
-		}
-
-		return correctNameFound;
-	}
+        findByXPath(profileButton).click();
+        String profileName = findByXPath(dashboardProfileNameLoc).getText();
+        return profileName;
+    }
 }
