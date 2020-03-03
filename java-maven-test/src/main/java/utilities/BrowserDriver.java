@@ -14,6 +14,7 @@ public class BrowserDriver {
 	
 	public static void setDriver(WebDriver driver) {
 		BrowserDriver.driver = driver;
+		driver.manage().window().maximize();
 	}
 
 }
