@@ -5,5 +5,3 @@ Feature: Logging in to an existing twitter handle
     Given I am in the twitter home page
     And login as "johndoe310718@yahoo.com" with password "testaccount#1"
     Then I should land on my personal landing page "John Doe"
-    And I verify profile ID "@JohnDoe07901945"
-    And I logout from twitter account
