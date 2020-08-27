@@ -6,28 +6,34 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class BasePage {
-	protected WebDriver driver;
-	protected long timeOut = 60;
+    protected WebDriver driver;
+    protected long timeOut = 60;
 
-	public BasePage(WebDriver driver) {
-		this.driver = driver;
-		// new WebDriverWait(driver,
-		// timeOut).until(((JavascriptExecutor)driver).executeScript("return
-		// document.readyState").equals("complete")); <- needs work
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+        // new WebDriverWait(driver,
+        // timeOut).until(((JavascriptExecutor)driver).executeScript("return
+        // document.readyState").equals("complete")); <- needs work
 
-	}
+    }
 
-	protected WebElement findById(String loc) {
-		return new WebDriverWait(driver, timeOut).until(ExpectedConditions.visibilityOfElementLocated(By.id(loc)));
-	}
+    protected WebElement findById(String loc) {
+        return new WebDriverWait(driver, timeOut).until(ExpectedConditions.visibilityOfElementLocated(By.id(loc)));
+    }
 
-	protected WebElement findByXPath(String loc) {
-		return new WebDriverWait(driver, timeOut).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loc)));
-	}
+    protected WebElement findByXPath(String loc) {
+        return new WebDriverWait(driver, timeOut).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loc)));
+    }
 
-	protected WebElement findByName(String loc) {
-		return new WebDriverWait(driver, timeOut).until(ExpectedConditions.visibilityOfElementLocated(By.name(loc)));
-	}
+    protected WebElement findByName(String loc) {
+        return new WebDriverWait(driver, timeOut).until(ExpectedConditions.visibilityOfElementLocated(By.name(loc)));
+    }
+
+    protected List<WebElement> findElementsByXpath(String loc) {
+        return new WebDriverWait(driver, timeOut).until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(loc), 0));
+    }
 
 }

@@ -20,4 +20,8 @@ public class LoginPage extends BasePage {
         findByXPath(pWordLoc).sendKeys(password);
         findByXPath(submit).click();
     }
+
+    public boolean isPhoneEmailFieldDisplayed() {
+        return findByXPath(phoneEmailfield).isDisplayed();
+    }
 }

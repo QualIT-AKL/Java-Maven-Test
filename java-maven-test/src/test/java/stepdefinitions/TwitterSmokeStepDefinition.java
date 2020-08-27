@@ -1,8 +1,11 @@
+/*
 package stepdefinitions;
 
+import cucumber.api.PendingException;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,7 +25,8 @@ public class TwitterSmokeStepDefinition {
     @Before
     public void setupBrowser(Scenario scenario) {
         this.scenario = scenario;
-        final String webAppUrl = System.getProperty("URL");
+        //final String webAppUrl = System.getProperty("URL");
+        final String webAppUrl = "https://twitter.com/";
         // System.out.println("\"" + System.getProperty("timestamp") + "\"");
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 
@@ -54,4 +58,16 @@ public class TwitterSmokeStepDefinition {
         twitterHome = new TwitterUserHomePage(BrowserDriver.getDriver());
         Assert.assertEquals(fullName, twitterHome.getDashboardProfileName(), "Profile name doesn't match");
     }
+
+    @And("^I verify profile ID \"([^\"]*)\"$")
+    public void iVerifyProfileID(String expectedProfileID) throws Throwable {
+        Assert.assertEquals(expectedProfileID, twitterHome.getProfileID(), "Profile ID doesn't match");
+    }
+
+    @And("^I logout from twitter account$")
+    public void iLogoutFromTwitterAccount() {
+        twitterHome.logoutTwitter();
+        Assert.assertTrue(loginP.isPhoneEmailFieldDisplayed());
+    }
 }
+*/
