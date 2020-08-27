@@ -6,28 +6,49 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BasePage {
-	protected WebDriver driver;
-	protected long timeOut = 60;
+import java.util.List;
 
-	public BasePage(WebDriver driver) {
-		this.driver = driver;
-		// new WebDriverWait(driver,
-		// timeOut).until(((JavascriptExecutor)driver).executeScript("return
-		// document.readyState").equals("complete")); <- needs work
+public abstract class BasePage {
+    protected WebDriver driver;
+    protected long timeOut = 60;
 
-	}
+    public BasePage(WebDriver driver) throws InvalidApplicationState {
+        this.driver = driver;
+        this.checkForGoodAppState();
+    }
 
-	protected WebElement findById(String loc) {
-		return new WebDriverWait(driver, timeOut).until(ExpectedConditions.visibilityOfElementLocated(By.id(loc)));
-	}
+    public abstract Object onValidPage();
 
-	protected WebElement findByXPath(String loc) {
-		return new WebDriverWait(driver, timeOut).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loc)));
-	}
+    private void checkForGoodAppState() throws InvalidApplicationState {
+        Object object = onValidPage();
+        if (!object.equals(true)) {
+            throw new InvalidApplicationState(object.toString());
+        }
+    }
 
-	protected WebElement findByName(String loc) {
-		return new WebDriverWait(driver, timeOut).until(ExpectedConditions.visibilityOfElementLocated(By.name(loc)));
-	}
+    protected WebElement findById(String loc) {
+        return new WebDriverWait(driver, timeOut).until(ExpectedConditions.visibilityOfElementLocated(By.id(loc)));
+    }
+
+    protected WebElement findByXPath(String loc) {
+        return new WebDriverWait(driver, timeOut).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loc)));
+    }
+
+    protected WebElement findByName(String loc) {
+        return new WebDriverWait(driver, timeOut).until(ExpectedConditions.visibilityOfElementLocated(By.name(loc)));
+    }
+
+    protected List<WebElement> findElementsByXpath(String loc) {
+        return new WebDriverWait(driver, timeOut).until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(loc), 0));
+    }
+
+    protected void sendCharacters(WebElement element, String value) {
+        element.clear();
+        for (int i = 0; i < value.length(); i++) {
+            char c = value.charAt(i);
+            String s = new StringBuilder().append(c).toString();
+            element.sendKeys(s);
+        }
+    }
 
 }

@@ -4,7 +4,7 @@
 <suite name="Initial suite">
 <test name="Test Diary">
   <packages>
-    <package name="testRunners.funcRun" />
+    <package name="testRunners.smokeRun" />
   </packages>
 </test>
 
