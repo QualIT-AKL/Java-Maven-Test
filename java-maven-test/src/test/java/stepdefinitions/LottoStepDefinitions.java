@@ -1,6 +1,7 @@
 package stepdefinitions;
 
 import common.InvalidApplicationState;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -22,7 +23,7 @@ public class LottoStepDefinitions {
         BrowserDriver.getDriver().get(url);
     }
 
-    @When("^I click “Log in”$")
+    @When("^I click 'Log in'$")
     public void iClickLogIn() throws InvalidApplicationState {
         hPage = new HomePage(BrowserDriver.getDriver());
         hPage.clickOnLoginButtons();
