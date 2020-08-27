@@ -8,16 +8,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class BasePage {
+public abstract class BasePage<T> {
     protected WebDriver driver;
     protected long timeOut = 60;
 
-    public BasePage(WebDriver driver) {
+    public BasePage(WebDriver driver) throws InvalidApplicationState {
         this.driver = driver;
-        // new WebDriverWait(driver,
-        // timeOut).until(((JavascriptExecutor)driver).executeScript("return
-        // document.readyState").equals("complete")); <- needs work
+        this.checkForGoodAppState();
+    }
 
+    public abstract T onValidPage();
+
+    private void checkForGoodAppState() throws InvalidApplicationState {
+        Object object = onValidPage();
+        if (!object.equals(true)) {
+            throw new InvalidApplicationState(object.toString());
+        }
     }
 
     protected WebElement findById(String loc) {
@@ -34,6 +40,15 @@ public class BasePage {
 
     protected List<WebElement> findElementsByXpath(String loc) {
         return new WebDriverWait(driver, timeOut).until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(loc), 0));
+    }
+
+    protected void sendCharacters(WebElement element, String value) {
+        element.clear();
+        for (int i = 0; i < value.length(); i++) {
+            char c = value.charAt(i);
+            String s = new StringBuilder().append(c).toString();
+            element.sendKeys(s);
+        }
     }
 
 }
