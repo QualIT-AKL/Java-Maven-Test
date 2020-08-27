@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public abstract class BasePage<T> {
+public abstract class BasePage {
     protected WebDriver driver;
     protected long timeOut = 60;
 
@@ -17,7 +17,7 @@ public abstract class BasePage<T> {
         this.checkForGoodAppState();
     }
 
-    public abstract T onValidPage();
+    public abstract Object onValidPage();
 
     private void checkForGoodAppState() throws InvalidApplicationState {
         Object object = onValidPage();
