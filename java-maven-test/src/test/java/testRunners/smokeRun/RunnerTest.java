@@ -8,6 +8,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
         features = "src/test/resources/features",
         glue = {"stepdefinitions"},
         monochrome = true,
+        strict=true,
         plugin = {"pretty", "html:target/cucumber-html-report", "json:target/cucumber.json"}
 )
 public class RunnerTest extends AbstractTestNGCucumberTests {
