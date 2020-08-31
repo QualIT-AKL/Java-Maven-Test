@@ -8,3 +8,12 @@ Feature: Logging in to an existing twitter handle
     Then I should land on my personal landing page
     And I verify email ID "joe.doe.auto@gmail.com"
     And I logout from lotto account
+    
+Feature: Logging in to auckland transport
+  I want to be able to log in and check the error
+
+  Scenario: Log into an Auckland Transport
+    Given I am auckland in "https://at.govt.nz/"
+    When I click a 'Log in'
+    And login good as “John” with password “Doe”
+    Then my login should be rejected with an error message
