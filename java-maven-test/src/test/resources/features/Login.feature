@@ -1,10 +1,9 @@
-Feature: Logging in to an existing twitter handle
-  I want to be able to log in and check my feeds in twitter
+Feature: Logging in to an unexisting Auckland Transport account
+  I want to be able to see an error message when trying to login to a unexisting account
 
   Scenario: Log into an existing lotto account
-    Given I am in "https://mylotto.co.nz/"
+    Given I am in "https://at.govt.nz/"
     When I click 'Log in'
-    And login as "joe.doe.auto@gmail.com" with password "testautomation123*"
-    Then I should land on my personal landing page
-    And I verify email ID "joe.doe.auto@gmail.com"
-    And I logout from lotto account
+    And login as "John" with password "Doe"
+    Then I should be warned the account doesn't exist
+

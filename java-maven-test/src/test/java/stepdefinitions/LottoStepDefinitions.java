@@ -40,10 +40,9 @@ public class LottoStepDefinitions {
         lPage.loginWithCredentials(username, password);
     }
 
-    @Then("^I should land on my personal landing page$")
-    public void iShouldLandOnMyPersonalLandingPage() throws InvalidApplicationState {
-        loggedInUserPage = new LoggedInUserPage(BrowserDriver.getDriver());
-        Assert.assertTrue(loggedInUserPage.isLoginSuccessful(), "Login Failed");
+    @Then("^I should be warned the account doesn't exist$")
+    public void iShouldReceiveAnErrorMessage() {
+        Assert.assertTrue(lPage.isMessageDisplayed(), "Login failed");
     }
 
     @And("^I verify email ID \"([^\"]*)\"$")
