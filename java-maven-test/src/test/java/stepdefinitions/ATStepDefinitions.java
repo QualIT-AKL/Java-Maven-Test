@@ -12,7 +12,7 @@ import pageobjectsLotto.LoggedInUserPage;
 import pageobjectsLotto.LoginPage;
 import utilities.BrowserDriver;
 
-public class LottoStepDefinitions {
+public class ATStepDefinitions {
 
     private HomePage hPage;
     private LoginPage lPage;
@@ -38,6 +38,12 @@ public class LottoStepDefinitions {
     public void loginAsWithPassword(String username, String password) throws InvalidApplicationState {
         lPage = new LoginPage(BrowserDriver.getDriver());
         lPage.loginWithCredentials(username, password);
+    }
+    
+    @Then("^my login should be rejected with an error message$")
+    	public void myLoginShouldBeRejectedWithAnErrorMessage() throws InvalidApplicationState {
+    	lPage = new LoginPage(BrowserDriver.getDriver());
+    	Assert.assertTrue(lPage.isLoginErrorMessageDisplayed());
     }
 
     @Then("^I should land on my personal landing page$")
