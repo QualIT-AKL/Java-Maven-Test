@@ -1,7 +1,7 @@
 Feature: Logging in to an existing twitter handle
   I want to be able to log in and check my feeds in twitter
 
-  Scenario: Log into an existing lotto account
+  Scenario: Check that error message displays when user logs into AT govt with invalid credentials
     Given I am in "https://at.govt.nz/"
     When I click 'Log in'
     And login as "John" with password "Doe"
