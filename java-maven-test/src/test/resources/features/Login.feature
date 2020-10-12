@@ -4,7 +4,7 @@ Feature: Logging in to an existing twitter handle
   Scenario: Log into an existing lotto account
     Given I am in "https://mylotto.co.nz/"
     When I click 'Log in'
-    And login as "joe.doe.auto@gmail.com" with password "testautomation123*"
+    And login as "username" with password "password"
     Then I should land on my personal landing page
-    And I verify email ID "joe.doe.auto@gmail.com"
+    And I verify email ID "email"
     And I logout from lotto account
