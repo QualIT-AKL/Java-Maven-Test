@@ -1,5 +1,5 @@
 Feature: Logging in to an existing twitter handle
-  I want to be able to log in and check my feeds in twitter
+  I want to be able to log in lotto webpage
 
   Scenario: Log into an existing lotto account
     Given I am in "https://mylotto.co.nz/"
